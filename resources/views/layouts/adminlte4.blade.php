@@ -75,7 +75,7 @@
                 <i class="bi bi-list"></i>
               </a>
             </li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
+            <li class="nav-item d-none d-md-block"><a href={{ route("home") }} class="nav-link">Home</a></li>
             <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
           </ul>
           <!--end::Start Navbar Links-->
@@ -303,14 +303,14 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href={{ route('foods.index') }} class="nav-link active">
-                      <i class="nav-icon bi bi-circle"></i>
+                    <a href={{ route('foods.index') }} class="nav-link {{ request()->routeIs('foods.*') ? 'active' : '' }}">
+                      <i class="nav-icon bi {{ request()->routeIs('foods.*') ? 'bi-circle-fill' : 'bi-circle' }}"></i>
                       <p>Food</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href={{ route("categories.index") }} class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
+                    <a href={{ route("categories.index") }} class="nav-link {{ request()->routeIs('foods.*') ? 'active' : '' }}">
+                      <i class="nav-icon bi {{ request()->routeIs('categories.*') ? 'bi-circle-fill' : 'bi-circle' }}"></i>
                       <p>Category</p>
                     </a>
                   </li>

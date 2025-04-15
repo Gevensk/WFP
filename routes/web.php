@@ -19,7 +19,7 @@ use App\Http\Controllers\FoodController;
 //     return view('welcome');
 // });
 
-Route::view('/', 'home'); //Route::view -> langsung return view
+Route::view('/', 'index2'); //Route::view -> langsung return view
 
 Route::get ('/coba', function(){
     return 'Hai Len!';
@@ -81,4 +81,4 @@ Route::resource('categories',CategoryController::class);
 
 Route::get('/totalFoods', [CategoryController::class, "totalFoods"]);
 
-Route::view('index2', 'index2');
+Route::view('index2', 'index2') ->name("home");
