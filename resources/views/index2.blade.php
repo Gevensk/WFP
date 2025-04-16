@@ -467,3 +467,12 @@
     </a>
   </li>
 @endsection
+
+@section("side-bar-report")
+<li class="nav-item">
+  <a href="{{ route('totalfood') }}" class="nav-link">
+    <i class="nav-icon bi"></i>
+    <p>Total Foods</p>
+  </a>
+</li>
+@endsection

@@ -79,6 +79,6 @@ Route::get('/admin/{cat}', function($cat){
 Route::resource('foods',FoodController::class);
 Route::resource('categories',CategoryController::class);
 
-Route::get('/totalFoods', [CategoryController::class, "totalFoods"])->name("totalfood");
+Route::get('/totalFoods', [CategoryController::class, "totalFoods"])->name('totalfood');
 
 Route::view('index2', 'index2') ->name("home");

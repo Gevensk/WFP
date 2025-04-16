@@ -16,7 +16,7 @@ class CategoryController extends Controller
                     ->groupBy("c.name")
                     ->get();
 
-        return view("totalfood", compact('report'));
+        return view("reports.totalfood", compact('report'));
     }
 
     /**
