@@ -53,7 +53,7 @@ class FoodController extends Controller
      */
     public function show($food)
     {
-        $current_food = Food::find($food);
+        $current_food = Food::find($food); //mengambil data food sesuai id
         return view("food.show", compact("current_food"));
     }
     
