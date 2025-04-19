@@ -22,7 +22,7 @@ use App\Http\Controllers\FoodController;
 Route::view('/', 'index2'); //Route::view -> langsung return view
 
 Route::get ('/coba', function(){
-    return 'Hai Len!';
+    return 'Hai GUYS!';
 });
 
 Route::get('user/{id}', function($id){ //parameter tidak boleh null
@@ -54,7 +54,7 @@ Route::get('/welcome', function(){
 });
 
 Route::get('/before_order', function(){
-    return "pilih Dine-In atau Takeaway";
+    return "Pilih Dine-In atau Takeaway";
 });
 
 Route::get('/menu/{opsi?}', function($opsi="Dine-in"){
