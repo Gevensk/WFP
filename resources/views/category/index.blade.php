@@ -5,6 +5,8 @@ Category
 @endsection
 
 @section('content')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
 <div class="container">
   <h2>Categories</h2>       
   <table class="table">
@@ -12,14 +14,22 @@ Category
       <tr>
         <th>#</th>
         <th>Name</th>
+        <th>Foods</th>
       </tr>
     </thead>
     <tbody>
-        @foreach ($categories as $g)
-            <tr>
-                <td>{{ $g->id }}</td>
-                <td>{{ $g->name }}</td>
-            </tr>
+        @foreach ($category as $c)
+          <tr>
+            <td>{{ $c->id }}</td>
+            <td>{{ $c->name }}</td>
+            <td>
+                <ul>
+                  @foreach($c->foods as $f)
+                      <li>{{ $f->name }}</li>
+                  @endforeach
+                </ul>
+            </td>
+          </tr>
         @endforeach
     </tbody>
   </table>
@@ -51,4 +61,13 @@ Category
       <p>Orders</p>
     </a>
   </li>
+@endsection
+
+@section("side-bar-report")
+<li class="nav-item">
+  <a href="{{ route('totalfood') }}" class="nav-link">
+    <i class="nav-icon bi"></i>
+    <p>Total Foods</p>
+  </a>
+</li>
 @endsection

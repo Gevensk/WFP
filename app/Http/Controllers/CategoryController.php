@@ -24,8 +24,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('category.index', ['categories' => $categories]);
+        $category = Category::with('foods')->get();
+        return view('category.index', compact('category'));
     }
 
     /**

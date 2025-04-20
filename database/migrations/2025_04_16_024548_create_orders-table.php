@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->double('total_price', 8,2);
-            $table->enum('status', ['pending', 'lunas', 'batal']);
+            $table->tinyInteger('dinein');
+            $table->enum('metode_payment', ['kredit', 'debit', 'qris']);
+            $table->enum('status', ['proses', 'siap diambil', 'selesai']);
 
             $table->unsignedBigInteger('customers_id');
             $table->foreign('customers_id')->references('id')->on('customers');
-
-            $table->unsignedBigInteger('payment_id');
-            $table->foreign('payment_id')->references('id')->on('payments');
         });
     }
 

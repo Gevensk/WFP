@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('nutrition_facts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nama', 100);
-            $table->string('email', 100);
-            $table->string('username', 45);
-            $table->string('password', 250);
+
+            $table->unsignedBigInteger('food_id');
+            $table->foreign('food_id')->references('id')->on('foods');
+
+            $table->unsignedBigInteger('nutrition_id');
+            $table->foreign('nutrition_id')->references('id')->on('nutritions');
+
+            $table->string('jumlah', 45);
         });
     }
 
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('nutritionfacts');
     }
 };

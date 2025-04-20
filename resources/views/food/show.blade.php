@@ -12,7 +12,7 @@
 <body> 
  
 <div class="card" style="width:400px">
-    <img class="card-img-top" src="https://cdn.britannica.com/36/123536-050-95CB0C6E/Variety-fruits-vegetables.jpg" alt="Card image">
+    <img class="card-img-top" src=" {{ asset('storage/food/'.$current_food->image) }}" alt="Card image">
     <div class="card-body">
         <h4 class="card-title">{{ $current_food->name }}</h4>
         <p class="card-text">{{ $current_food->description }}</p>

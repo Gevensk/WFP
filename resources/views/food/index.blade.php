@@ -5,8 +5,27 @@ Foods
 @endsection
 
 @section('content')
+<!-- css utk tampilan card -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <div class="container">
-  <h2>Foods</h2>       
+  <h2>Foods</h2>
+
+  <!-- draft tampilan card -->
+  {{-- @foreach ($foods as $f)
+  <div class="card" style="width:400px">
+    <img class="card-img-top" src="{{ asset('storage/food/'.$f->image) }}" alt="Card image">
+    <div class="card-body">
+        <h4 class="card-title">{{ $f->name }}</h4><br>
+        <p class="card-text">{{ $f->description }}</p>
+        <a href="#" class="btn btn-primary">See Profile</a>
+    </div>
+  </div> 
+  @endforeach --}}
+
   <table class="table">
     <thead>
       <tr>
@@ -57,4 +76,13 @@ Foods
       <p>Orders</p>
     </a>
   </li>
+@endsection
+
+@section("side-bar-report")
+<li class="nav-item">
+  <a href="{{ route('totalfood') }}" class="nav-link">
+    <i class="nav-icon bi"></i>
+    <p>Total Foods</p>
+  </a>
+</li>
 @endsection
