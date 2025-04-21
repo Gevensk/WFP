@@ -30,9 +30,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class, //kategori ditulis duluan karena merupakan foreign key dari foods
             FoodSeeder::class,
             IngredientsSeeder::class,   
-            FoodIngredientsSeeder::class,
-            NutritionSeeder::class,
-            NutritionFactsSeeder::class
+            FoodIngredientsSeeder::class
         ]);
     }
 }
