@@ -14,13 +14,13 @@ class Keranjang extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
 
-    public function food(): BelongsTo
-    {
-        return $this->belongsTo(Food::class, 'food_id');
-    }
-
-    public function order(): BelongsTo
+    public function order()
     {
         return $this->belongsTo(Order::class, 'order_id');
+    }
+
+    public function food()
+    {
+        return $this->belongsTo(Food::class, 'food_id');
     }
 }

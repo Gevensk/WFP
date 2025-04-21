@@ -9,7 +9,7 @@ Total Menu
 
 <div class="container">
   <h2>Total Menu per Kategori</h2>       
-  <table class="table">
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Kategori</th>

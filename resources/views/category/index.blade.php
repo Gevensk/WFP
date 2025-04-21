@@ -9,7 +9,7 @@
 
   <div class="container">
     <h2>Categories</h2>
-    <table class="table">
+    <table class="table table-bordered">
     <thead>
       <tr>
       <th>#</th>
