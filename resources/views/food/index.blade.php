@@ -159,6 +159,13 @@ Daftar Menu
     <p>Total Foods</p>
   </a>
 </li>
+
+<!-- <li class="nav-item">
+  <a href="{{ route('totalfood') }}" class="nav-link">
+    <i class="nav-icon bi"></i>
+    <p>Total Active Customer</p>
+  </a>
+</li> -->
 @endsection
 
 <!-- handling tambah dan kurang jumlah pesanan -->

@@ -80,5 +80,6 @@ Route::resource('foods',FoodController::class);
 Route::resource('categories',CategoryController::class);
 
 Route::get('/totalFoods', [CategoryController::class, "totalFoods"])->name('totalfood');
+Route::get('/activeCustomer',[CategoryController::class,"totalFoods"])->name('activecustomer');
 
 Route::view('index2', 'index2') ->name("home");
