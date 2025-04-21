@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategorySeeder::class, //kategori ditulis duluan karena merupakan foreign key dari foods
             FoodSeeder::class,
-            IngredientsSeeder::class,
-            FoodIngredients::class
+            IngredientsSeeder::class,   
+            FoodIngredientsSeeder::class
         ]);
     }
 }
