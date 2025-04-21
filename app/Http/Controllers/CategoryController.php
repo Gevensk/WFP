@@ -11,11 +11,11 @@ class CategoryController extends Controller
     public function totalFoods()
     {
         $report = DB::table('categories as c')
-            ->join('foods as f', 'c.id', '=', 'f.category_id')
-            ->select("c.nama", DB::raw("count(f.nama) as totalfood"))
-            ->groupBy("c.nama")
-            ->orderBy("totalfood", "desc")
-            ->get();
+                    ->join('foods as f', 'c.id', '=', 'f.category_id')
+                    ->select("c.nama", DB::raw("count(f.nama) as totalfood"))
+                    ->groupBy("c.nama")
+                    ->orderBy("totalfood", "desc")
+                    ->get();
 
         return view("reports.totalfood", compact('report'));
     }

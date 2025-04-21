@@ -10,10 +10,14 @@ class Order extends Model
 {
     use HasFactory;
     protected $table='orders';
-    protected $primarykey ='id';
+    protected $primaryKey ='id';
     public $timestamps = true;
 
     public function customer(): BelongsTo{
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(Customer::class, 'customers_id');
+    }
+    
+    public function keranjangs(){
+        return $this->hasMany(Keranjang::class, 'order_id', 'id');
     }
 }

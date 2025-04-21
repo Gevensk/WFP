@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\OrderController;
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,3 +86,5 @@ Route::get('/totalFoods', [CategoryController::class, "totalFoods"])->name('tota
 Route::get('/activeCustomer',[CategoryController::class,"totalFoods"])->name('activecustomer');
 
 Route::view('index2', 'index2') ->name("home");
+
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
