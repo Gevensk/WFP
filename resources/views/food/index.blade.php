@@ -31,9 +31,9 @@ Daftar Menu
       <tr>
         <th>#</th>
         <th>Nama</th>
-        <th>Nutrition Facts</th>
-        <th>Deskripsi</th>
         <th>Harga</th>
+        <th>Porsi</th>
+        <th>Berat</th>
         <th>Kategori</th>
         <th></th>
       </tr>
