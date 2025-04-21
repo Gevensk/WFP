@@ -21,6 +21,16 @@ class FoodSeeder extends Seeder
                 "porsi"=> "sedang",
                 "berat"=>90,
                 "category_id" => 1,
+                "image" => "nasimerahayampanggangkecap.jpg"
+            ],
+            [
+                "nama" => "Strawberry Smoothie Bowl",
+                "deskripsi" => "Nikmati hidangan sehat dan lezat dengan Nasi Merah yang kaya serat, dipadukan dengan Ayam Panggang Kecap yang manis gurih dan Tumis Kangkung yang segar. Kombinasi sempurna untuk santapan yang mengenyangkan dan bergizi.",
+                "harga" => 32000,
+                "porsi"=> "sedang",
+                "berat"=>80,
+                "category_id" => 4,
+                "image" => "sbsmoothiebowl.jpg"
             ]
         ]);
     }

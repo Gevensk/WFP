@@ -21,11 +21,11 @@ Category
         @foreach ($category as $c)
           <tr>
             <td>{{ $c->id }}</td>
-            <td>{{ $c->name }}</td>
+            <td>{{ $c->nama }}</td>
             <td>
                 <ul>
                   @foreach($c->foods as $f)
-                      <li>{{ $f->name }}</li>
+                      <li>{{ $f->nama }}</li>
                   @endforeach
                 </ul>
             </td>

@@ -1,7 +1,7 @@
 @extends('layouts.adminlte4')
 
 @section('title')
-Foods
+Daftar Menu
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@ Foods
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <div class="container">
-  <h2>Foods</h2>
+  <h2>Daftar Menu</h2>
 
   <!-- draft tampilan card -->
   {{-- @foreach ($foods as $f)
@@ -30,20 +30,22 @@ Foods
     <thead>
       <tr>
         <th>#</th>
-        <th>Name</th>
+        <th>Nama</th>
         <th>Nutrition Facts</th>
-        <th>Description</th>
-        <th>Price</th>
+        <th>Deskripsi</th>
+        <th>Harga</th>
+        <th>Kategori</th>
       </tr>
     </thead>
     <tbody>
         @foreach ($foods as $f)
             <tr>
                 <td>{{ $f->id }}</td>
-                <td><a href="{{ route('foods.show', $f->id) }}">{{ $f->name }}</a></td>
-                <td>{{ $f->nutrition_fact }}</td>
-                <td>{{ $f->description }}</td>
-                <td>{{ $f->price }}</td>
+                <td>{{ $f->nama }}</td>
+                <td>{{ $f->harga }}</td>
+                <td>{{ $f->porsi }}</td>
+                <td>{{ $f->berat }}</td>
+                <td>{{ $f->category->nama ?? 'Tidak ada kategori' }}</td>
             </tr>
         @endforeach
     </tbody>

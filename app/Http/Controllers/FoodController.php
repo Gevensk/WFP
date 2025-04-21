@@ -19,13 +19,10 @@ class FoodController extends Controller
 
         //Query Builder
         $foods = DB::table("foods")->get();
-        $foods = $foods->sortBy('price');
-        // dd($foods);
+        $foods = $foods->sortBy('harga');
 
         //Eloquent Model
-        $foods = Food::all();
-        $foods = $foods->sortBy('price');
-        // dd($foods);
+        $foods = Food::with('category')->get();
 
         // return view('food.index', compact('foods'));
 
