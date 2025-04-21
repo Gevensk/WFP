@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use App\Http\Controllers\FoodController;
 |
 */
 
-// Route::get('/', function () {
+// Route::get('/', function () {n
 //     return view('welcome');
 // });
 
@@ -78,6 +79,7 @@ Route::get('/admin/{cat}', function($cat){
 
 Route::resource('foods',FoodController::class);
 Route::resource('categories',CategoryController::class);
+Route::resource('orders', OrderController::class);
 
 Route::get('/totalFoods', [CategoryController::class, "totalFoods"])->name('totalfood');
 
