@@ -15,9 +15,4 @@ class Ingredients extends Model
     public function foods(): BelongsToMany {
         return $this->belongsToMany(Food::class, 'food_ingredients', 'ingredient_id', 'food_id');
     }
-    
-
-    // public function food(): BelongsToMany{
-    //     return $this->belongsToMany(Food::class, 'food_ingredients', 'id','id');
-    // }
 }

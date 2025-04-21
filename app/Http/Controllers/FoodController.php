@@ -22,7 +22,7 @@ class FoodController extends Controller
         $foods = $foods->sortBy('harga');
 
         //Eloquent Model
-        $foods = Food::with('category')->get();
+        $foods = Food::with(['category', 'ingredients', 'nutritions'])->get();
 
         // return view('food.index', compact('foods'));
 

@@ -59,10 +59,20 @@ Daftar Menu
 
                           <div style="flex: 1;">
                             <h5>Nutrition Facts</h5>
-                            <p><!-- NUTRITION FACTS DISINII --></p>
+                            <ul style="font-size: 0.9em;">
+                              @foreach($f->nutritions as $n)
+                                <li>{{ $n->nama }}: {{ $n->pivot->jumlah }} {{$n->satuan}}</li>
+                              @endforeach
+                            </ul>
+                          
                             <h5>Ingredients</h5>
-                            <p><!-- INGREDIENTS DISINIII --></p>
+                            <ul style="font-size: 0.9em;">
+                              @foreach($f->ingredients as $i)
+                                <li>{{ $i->nama }}</li>
+                              @endforeach
+                            </ul>
                           </div>
+                          
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -125,41 +135,7 @@ Daftar Menu
 </div>
 @endsection
 
-@section('side-bar')
-  <li class="nav-item">
-    <a href="{{ route('foods.index') }}" class="nav-link {{ request()->routeIs('foods.*') ? 'active' : '' }}">
-      <i class="nav-icon bi {{ request()->routeIs('foods.*') ? 'bi-circle-fill' : 'bi-circle' }}"></i>
-      <p>Daftar Menu</p>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a href="{{ route('categories.index') }}" class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
-      <i class="nav-icon bi {{ request()->routeIs('categories.*') ? 'bi-circle-fill' : 'bi-circle' }}"></i>
-      <p>Category</p>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a href="#" class="nav-link {{ request()->routeIs('customers.*') ? 'active' : '' }}">
-      <i class="nav-icon bi {{ request()->routeIs('customers.*') ? 'bi-circle-fill' : 'bi-circle' }}"></i>
-      <p>Customer</p>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a href="#" class="nav-link {{ request()->routeIs('orders.*') ? 'active' : '' }}">
-      <i class="nav-icon bi {{ request()->routeIs('orders.*') ? 'bi-circle-fill' : 'bi-circle' }}"></i>
-      <p>Orders</p>
-    </a>
-  </li>
-@endsection
-
-@section("side-bar-report")
-<li class="nav-item">
-  <a href="{{ route('totalfood') }}" class="nav-link">
-    <i class="nav-icon bi"></i>
-    <p>Total Foods</p>
-  </a>
-</li>
-@endsection
+@include("partials.sidebar")
 
 <!-- handling tambah dan kurang jumlah pesanan -->
 {{-- @push("script")
