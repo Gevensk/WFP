@@ -40,6 +40,9 @@
       integrity="sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI="
       crossorigin="anonymous"
     />
+    <link
+      href = "	https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+    />
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href= {{ asset("adminlte4/css/adminlte.css") }} />
@@ -325,6 +328,7 @@
       <!--begin::App Main-->
       <main class="app-main">
         @yield('content')
+        @stack("modals")
       </main>
       <!--end::App Main-->
       <!--begin::Footer-->

@@ -40,7 +40,7 @@ Category
   <li class="nav-item">
     <a href="{{ route('foods.index') }}" class="nav-link {{ request()->routeIs('foods.*') ? 'active' : '' }}">
       <i class="nav-icon bi {{ request()->routeIs('foods.*') ? 'bi-circle-fill' : 'bi-circle' }}"></i>
-      <p>Food</p>
+      <p>Daftar Menu</p>
     </a>
   </li>
   <li class="nav-item">
