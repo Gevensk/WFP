@@ -16,25 +16,37 @@ class OrderController extends Controller
     public function activeMember()
     {
         $report = DB::table('orders as o')
-                    ->join('customers as c', 'c.id', '=', 'o.customers_id')
-                    ->select("c.nama", DB::raw("count(o.id) as jumlah_pesan"))
-                    ->where("o.status", "=", "selesai")
-                    ->groupBy("c.nama")
-                    ->orderBy("jumlah_pesan", "desc")
-                    ->get();
+            ->join('customers as c', 'c.id', '=', 'o.customers_id')
+            ->select("c.nama", DB::raw("count(o.id) as jumlah_pesan"))
+            ->where("o.status", "=", "selesai")
+            ->groupBy("c.nama")
+            ->orderBy("jumlah_pesan", "desc")
+            ->get();
 
         return view("reports.activecustomer", compact('report'));
     }
 
+    public function terlaris()
+    {
+        $data = DB::table('foods as f')
+            ->join('keranjangs as k', 'f.id', '=', 'k.food_id')
+            ->join('orders as o', 'k.order_id', '=', 'o.id')
+            ->where('o.status', 'selesai')
+            ->select('f.nama', DB::raw('COUNT(o.id) as total'))
+            ->groupBy('f.id', 'f.nama')
+            ->get();
+        return view("reports.terlaris",compact('data'));
+    }
+
     public function index()
     {
-         //left join ambil yg null (No Item)
-         // $orders = Order::with(['customer', 'keranjangs.food'])->get();
-         // return view('order.index', compact('orders'));
- 
-         //Eloquent Model
+        //left join ambil yg null (No Item)
+        // $orders = Order::with(['customer', 'keranjangs.food'])->get();
+        // return view('order.index', compact('orders'));
+
+        //Eloquent Model
+        
         $orders = Order::with(['customer', 'foods'])->get();
- 
         return view('order.index', ["orders" => $orders]);
     }
 
