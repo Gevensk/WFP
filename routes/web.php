@@ -20,7 +20,7 @@ use App\Http\Controllers\OrderController;
 //     return view('welcome');
 // });
 
-Route::view('/', 'index2'); //Route::view -> langsung return view
+Route::get('/', [FoodController::class, 'index']);
 
 Route::get ('/coba', function(){
     return 'Hai GUYS!';
@@ -88,3 +88,6 @@ Route::get('/paymentreport',[OrderController::class,"payment"])->name('paymentre
 Route::get('/belumselesai',[OrderController::class,"belumSelesai"])->name('belumselesai');
 
 Route::view('index2', 'index2') ->name("home");
+
+Route::post("/order/showactiveuser",[OrderController::class, 'showActiveUser'])->name("order.showactiveuser");
+Route::post("/order/showterlaris",[OrderController::class, 'showTerlaris'])->name("order.showterlaris");

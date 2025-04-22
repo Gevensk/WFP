@@ -8,7 +8,9 @@ Total Menu
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <div class="container">
-  <h2>Menu Terlaris</h2>       
+  <h2><a href="#" onclick="showTerlaris()">Menu Terlaris</a></h2>
+  <div id ="showterlaris"></div>
+  
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -30,3 +32,18 @@ Total Menu
 @endsection
 
 @include("partials.sidebar")
+
+@push("script")
+<script>
+    function showTerlaris() {
+      $.ajax({
+        type: 'POST',
+        url: '{{ route("order.showterlaris") }}',
+        data: '_token=<?php echo csrf_token(); ?>',
+        success: function(data) {
+          $('#showterlaris').html(data.msg);
+        }
+      });
+    }
+  </script>
+@endpush

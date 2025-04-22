@@ -5,20 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Food;
 
 class CategoryController extends Controller
 {
     public function totalFoods()
     {
-        $report = DB::table('categories as c')
-                    ->join('foods as f', 'c.id', '=', 'f.category_id')
-                    ->select("c.nama", DB::raw("count(f.nama) as totalfood"))
-                    ->groupBy("c.nama")
-                    ->orderBy("totalfood", "desc")
+        $report = Category::withCount('foods')
+                    ->with('foods')
+                    ->orderByDesc('foods_count')
                     ->get();
 
         return view("reports.totalfood", compact('report'));
     }
+
 
     /**
      * Display a listing of the resource.

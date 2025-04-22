@@ -130,4 +130,38 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function showActiveUser()
+    {
+        $highest = DB::table('orders as o')
+            ->join('customers as c', 'c.id', '=', 'o.customers_id')
+            ->select("c.nama", DB::raw("count(o.id) as jumlah_pesan"))
+            ->where("o.status", "=", "selesai")
+            ->groupBy("c.nama")
+            ->orderBy("jumlah_pesan", "desc")
+            ->first();
+
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => "<div class='alert alert-info'>
+                        Customer ter-aktif adalah <b>".$highest->nama."</b></div>"
+        ), 200);
+    }
+
+    public function showTerlaris()
+    {
+        $terlaris = DB::table('foods as f')
+            ->join('keranjangs as k', 'f.id', '=', 'k.food_id')
+            ->join('orders as o', 'k.order_id', '=', 'o.id')
+            ->where('o.status', 'selesai')
+            ->select('f.nama', DB::raw('COUNT(o.id) as total'))
+            ->groupBy('f.id', 'f.nama')
+            ->first();
+
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => "<div class='alert alert-info'>
+                        Menu terlaris adalah <b>".$terlaris->nama."</b></div>"
+        ),200); 
+    }
 }

@@ -8,7 +8,8 @@ Active User
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <div class="container">
-  <h2>Active User</h2>       
+  <h2><a href="#" onclick="showActiveUser()">Active User</a></h2>
+  <div id ="showactiveuser"></div>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -30,3 +31,18 @@ Active User
 @endsection
 
 @include("partials.sidebar")
+
+@push("script")
+<script>
+    function showActiveUser() {
+      $.ajax({
+        type: 'POST',
+        url: '{{ route("order.showactiveuser") }}',
+        data: '_token=<?php echo csrf_token(); ?>',
+        success: function(data) {
+          $('#showactiveuser').html(data.msg);
+        }
+      });
+    }
+  </script>
+@endpush

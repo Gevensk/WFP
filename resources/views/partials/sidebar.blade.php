@@ -41,7 +41,7 @@
 <li class="nav-item">
   <a href="{{ route('terlaris') }}" class="nav-link">
     <i class="nav-icon bi"></i>
-    <p>Food Terlaris</p>
+    <p>Menu Terlaris</p>
   </a>
 </li>
 <li class="nav-item">
