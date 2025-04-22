@@ -77,8 +77,39 @@ class OrderController extends Controller
 
         //Eloquent Model
 
-        $orders = Order::with(['customer', 'foods'])->get();
+        $orders = Order::with(['customer', 'keranjangs.food'])
+            ->whereHas('keranjangs') // hanya ambil order yang memiliki keranjang
+            ->get();
+
         return view('order.index', ["orders" => $orders]);
+
+
+
+        // $orders = DB::table('orders as o')
+        //     ->join('customers as c', 'o.customers_id', '=', 'c.id')
+        //     ->join('keranjangs as k', 'o.id', '=', 'k.order_id')
+        //     ->join('foods as f', 'k.food_id', '=', 'f.id')
+        //     ->select(
+        //         'o.id as order_id',
+        //         'c.nama as customer_name',
+        //         'f.nama as food_name',
+        //         DB::raw('SUM(k.quantity) as total_quantity'),
+        //         'o.created_at as order_date',
+        //         'o.dinein',
+        //         'o.metode_payment',
+        //         'o.status'
+        //     )
+        //     ->groupBy(
+        //         'o.id',
+        //         'c.nama',
+        //         'f.nama',
+        //         'o.created_at',
+        //         'o.dinein',
+        //         'o.metode_payment',
+        //         'o.status'
+        //     )
+        //     ->get();
+        // return view('order.index', ["orders" => $orders]);
     }
 
     /**
