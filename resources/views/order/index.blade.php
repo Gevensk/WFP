@@ -27,20 +27,29 @@
                  <td>{{ $order->id }}</td>
                  <td>{{ optional($order->customer)->nama }}</td>
                  <td>
-                     @if($order->keranjangs->count() > 0)
-                     @php
-                     $foodNames = [];
-                     foreach($order->keranjangs as $keranjang) {
-                     if($keranjang->food) {
-                     $foodNames[] = $keranjang->food->nama;
-                     }
-                     }
-                     echo implode(', ', $foodNames);
-                     @endphp
-                     @else
-                     No Items
-                     @endif
-                 </td>
+                    @if($order->keranjangs->count() > 0)
+                    @php
+                        $groupedItems = [];
+                        foreach ($order->keranjangs as $item) {
+                            if ($item->food) {
+                                $name = $item->food->nama;
+                                if (!isset($groupedItems[$name])) {
+                                    $groupedItems[$name] = 0;
+                                }
+                                $groupedItems[$name] += $item->quantity;
+                            }
+                        }
+                    @endphp
+                    <ul>
+                        @foreach ($groupedItems as $name => $qty)
+                            <li>{{ $name }} ({{ $qty }} pcs)</li>
+                        @endforeach
+                    </ul>
+                    @else
+                        No Items
+                    @endif
+                </td>
+                
                  <td>{{ optional($order->created_at)->format('d M Y') }}</td>
                  <td>{{ $order->dinein == 1 ? 'Dine In' : 'Take Away' }}</td>
                  <td>{{ ucfirst($order->metode_payment) }}</td>
