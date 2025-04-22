@@ -35,7 +35,38 @@ class OrderController extends Controller
             ->select('f.nama', DB::raw('COUNT(o.id) as total'))
             ->groupBy('f.id', 'f.nama')
             ->get();
-        return view("reports.terlaris",compact('data'));
+        return view("reports.terlaris", compact('data'));
+    }
+
+    public function payment()
+    {
+        $data = DB::table('orders as o')
+            ->join('keranjangs as k', 'o.id', '=', 'k.order_id')
+            ->join('foods as f', 'k.food_id', '=', 'f.id')
+            ->where('o.status', 'selesai')
+            ->select(
+                'o.metode_payment',
+                DB::raw('SUM(k.quantity * f.harga) as total_pendapatan'),
+                DB::raw('COUNT(DISTINCT o.id) as jumlah_transaksi')
+            )
+            ->groupBy('o.metode_payment')
+            ->get();
+
+
+        return view("reports.paymentreport", compact('data'));
+    }
+
+    public function belumSelesai()
+    {
+        $data = DB::table('orders as o')
+            ->join('customers as c', 'o.customers_id', '=', 'c.id')
+            ->join('keranjangs as k', 'o.id', '=', 'k.order_id')
+            ->join('foods as f', 'k.food_id', '=', 'f.id')
+            ->where('o.status', '!=', 'selesai')
+            ->select('o.id as order_id', 'c.nama as customer', 'f.nama as food', 'k.quantity', 'o.status')
+            ->orderByDesc('o.id')
+            ->get();
+        return view("reports.belumselesai", compact('data'));
     }
 
     public function index()
@@ -45,7 +76,7 @@ class OrderController extends Controller
         // return view('order.index', compact('orders'));
 
         //Eloquent Model
-        
+
         $orders = Order::with(['customer', 'foods'])->get();
         return view('order.index', ["orders" => $orders]);
     }

@@ -44,4 +44,16 @@
     <p>Food Terlaris</p>
   </a>
 </li>
+<li class="nav-item">
+  <a href="{{ route('paymentreport') }}" class="nav-link">
+    <i class="nav-icon bi"></i>
+    <p>Payment Method Report</p>
+  </a>
+</li>
+<li class="nav-item">
+  <a href="{{ route('belumselesai') }}" class="nav-link">
+    <i class="nav-icon bi"></i>
+    <p>Orderan Belum Selesai</p>
+  </a>
+</li>
 @endsection

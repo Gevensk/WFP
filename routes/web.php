@@ -84,5 +84,7 @@ Route::resource('orders', OrderController::class);
 Route::get('/totalFoods', [CategoryController::class, "totalFoods"])->name('totalfood');
 Route::get('/activeCustomer',[OrderController::class,"activeMember"])->name('activecustomer');
 Route::get('/terlaris',[OrderController::class,"terlaris"])->name('terlaris');
+Route::get('/paymentreport',[OrderController::class,"payment"])->name('paymentreport');
+Route::get('/belumselesai',[OrderController::class,"belumSelesai"])->name('belumselesai');
 
 Route::view('index2', 'index2') ->name("home");
