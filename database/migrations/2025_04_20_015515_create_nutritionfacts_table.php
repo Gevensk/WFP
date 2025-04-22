@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('nutrition_facts', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
             $table->unsignedBigInteger('food_id');
             $table->foreign('food_id')->references('id')->on('foods');

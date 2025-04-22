@@ -31,9 +31,9 @@ class DatabaseSeeder extends Seeder
             FoodSeeder::class,
             IngredientsSeeder::class,   
             FoodIngredientsSeeder::class,
+            CustomerSeeder::class,
             OrderSeeder::class,
             KeranjangSeeder::class,
-            CustomerSeeder::class,
             NutritionSeeder::class,
             NutritionFactsSeeder::class,
         ]);

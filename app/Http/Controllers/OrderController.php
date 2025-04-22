@@ -75,10 +75,12 @@ class OrderController extends Controller
         // $orders = Order::with(['customer', 'keranjangs.food'])->get();
         // return view('order.index', compact('orders'));
 
-        //Eloquent Model
+        $orders = Order::with(['customer', 'foods'])
+            ->whereHas('keranjangs')
+            ->get();
 
-        $orders = Order::with(['customer', 'foods'])->get();
         return view('order.index', ["orders" => $orders]);
+
     }
 
     /**
