@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Food;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
 class FoodController extends Controller
@@ -34,7 +35,8 @@ class FoodController extends Controller
      */
     public function create()
     {
-        //
+        $category = Category::all();
+        return view('food.create', compact('category'));
     }
 
     /**
@@ -42,7 +44,17 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $food = new Food();
+        $food->nama = $request->get('nama');
+        $food->deskripsi = $request->get('deskripsi');
+        $food->harga = $request->get('harga');
+        $food->porsi = $request->get('porsi');
+        $food->berat = $request->get('berat');
+        $food->category_id = $request->get('category');
+        $food->image = $request->get('image');
+        $food->save();
+
+        return redirect() -> route('foods.index') -> with('status', 'Penambahan data food berhasil');
     }
 
     /**
@@ -73,8 +85,16 @@ class FoodController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Food $food)
     {
-        //
+        try{
+            $food->delete();
+            return redirect()->route('foods.index')->with('status', 'Hapus data berhasil');
+        }
+        catch (\PDOException $ex){
+            $msg = "Pastikan tidak ada data Nutrition Facts atau Ingredients yang berelasi sebelum menghapus. Hubungi admin untuk informasi lebih lanjut";
+
+            return redirect()->route('foods.index')->with('status', $msg);
+        }
     }
 }

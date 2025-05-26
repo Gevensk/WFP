@@ -14,13 +14,13 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('categories')->insert([
-            ["nama" => "Appetizer"],
-            ["nama" => "Main Course"],
-            ["nama" => "Snacks"],
-            ["nama" => "Dessert"],
-            ["nama" => "Coffee"],
-            ["nama" => "Non-Coffee"],
-            ["nama" => "Healthy Juice"]
+            ["nama" => "Appetizer", "image" => "appetizer.jpg"],
+            ["nama" => "Main Course", "image" => "maincourse.jpg"],
+            ["nama" => "Snacks", "image" => "snacks.jpg"],
+            ["nama" => "Dessert", "image" => "dessert.jpg"],
+            ["nama" => "Coffee", "image" => "coffee.jpg"],
+            ["nama" => "Non-Coffee", "image" => "noncoffee.jpg"],
+            ["nama" => "Healthy Juice", "image" => "healthyjuice.jpg"]
         ]);
     }
 }
