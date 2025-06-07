@@ -19,15 +19,6 @@ class Food extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function ingredients(): BelongsToMany {
-        return $this->belongsToMany(Ingredients::class, 'food_ingredients', 'food_id', 'ingredient_id');
-    }
-
-    public function nutritions()
-    {
-        return $this->belongsToMany(Nutrition::class, 'nutrition_facts', 'food_id', 'nutrition_id')->withPivot('jumlah');
-    }
-
     public function keranjangs(): BelongsToMany {
         return $this->belongsToMany(Keranjang::class, 'keranjangs', 'food_id', 'order_id');
     }

@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ingredients', function (Blueprint $table) {
-            $table->id();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-            $table->string('nama', 45);
+        Schema::table('foods', function(Blueprint $table){
+            $table->string('nutrition_facts', 3000);
+            $table->string('ingredients', 3000);
         });
     }
 
@@ -24,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ingredients');
+        Schema::table('foods', function(Blueprint $table){
+            $table->dropColumn(['nutrition_facts']);
+            $table->dropColumn(['ingredients']);
+        });
     }
 };

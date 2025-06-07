@@ -19,15 +19,10 @@ class FoodController extends Controller
         // print_r($foods);exit;
 
         //Query Builder
-        $foods = DB::table("foods")->get();
-        $foods = $foods->sortBy('harga');
+        $foods = Food::with('category')->get();
+        $category = Category::all();
 
-        //Eloquent Model
-        $foods = Food::with(['category', 'ingredients', 'nutritions'])->get();
-
-        // return view('food.index', compact('foods'));
-
-        return view('food.index', ['foods' => $foods]);
+        return view('food.index', compact('foods', 'category'));
     }
 
     /**
@@ -49,9 +44,10 @@ class FoodController extends Controller
         $food->deskripsi = $request->get('deskripsi');
         $food->harga = $request->get('harga');
         $food->porsi = $request->get('porsi');
-        $food->berat = $request->get('berat');
         $food->category_id = $request->get('category');
         $food->image = $request->get('image');
+        $food->nutrition_facts = $request->get('nutrition_facts');
+        $food->ingredients = $request->get('ingredients');
         $food->save();
 
         return redirect() -> route('foods.index') -> with('status', 'Penambahan data food berhasil');
@@ -77,9 +73,18 @@ class FoodController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Food $food)
     {
-        //
+        $food->updated_at = now();
+        $food->nama = $request->nama;
+        $food->deskripsi = $request->deskripsi;
+        $food->harga = $request->harga;
+        $food->porsi = $request->porsi;
+        $food->category_id = $request->category_id;
+        $food->image = $request->image;
+        $food->save();
+
+        return redirect()->route("foods.index")->with("status", "Update data food berhasil");
     }
 
     /**
@@ -97,4 +102,24 @@ class FoodController extends Controller
             return redirect()->route('foods.index')->with('status', $msg);
         }
     }
+
+    public function getEditForm(Request $request)
+    {
+        $id = $request->id;
+        $data = Food::find($id);
+        $category = Category::all();
+        return response()->json([
+            'status' => 'oke',
+            'msg' => view('food.getEditForm', compact('data', 'category'))->render()
+        ], 200);
+    }
+
+    // public function saveDataUpdate(Request $request)
+    // {
+    //     $id = $request->id;
+    //     $data = Food::find($id);
+    //     $data->nama = $request->name;
+    //     $data->save();
+    //     return response()->json(array('status' => 'oke', 'msg' => 'type data is up-to-date !'), 200);
+    // }
 }

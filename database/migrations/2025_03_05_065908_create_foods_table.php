@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('deskripsi', 1000);
             $table->float('harga');
             $table->enum('porsi', ['kecil', 'sedang', 'besar']);
-            $table->double('berat', 8,2);
-            // $table->string('image', 1000);
 
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');

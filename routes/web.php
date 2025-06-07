@@ -91,3 +91,7 @@ Route::view('index2', 'index2') ->name("home");
 
 Route::post("/order/showactiveuser",[OrderController::class, 'showActiveUser'])->name("order.showactiveuser");
 Route::post("/order/showterlaris",[OrderController::class, 'showTerlaris'])->name("order.showterlaris");
+
+Route::post('/ajax/food/getEditForm',[FoodController::class,'getEditForm'])->name('food.getEditForm');
+
+Route::post('/ajax/category/getEditForm',[CategoryController::class,'getEditForm'])->name('category.getEditForm');
