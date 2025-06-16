@@ -27,11 +27,11 @@
                         <form method="POST" action="{{ route('putCart',$data->id) }}">
                             @csrf
                             @method('PUT')
-                        <h3 class="product-title">{{$data->name}} </h3>
-                        <p><i>{{$data->category->name}}</i></p>
-                        <p class="product-description">{{$data->description}}</p>
-                        <h4 class="price">current price: <span>{{$data->price}}</span></h4>
-                        <p class="vote">{{$data->nutrition_fact}}</p>
+                        <h3 class="product-title">{{$data->nama}} </h3>
+                        <p><i>{{$data->category->nama}}</i></p>
+                        <p class="product-description">{{$data->deskripsi}}</p>
+                        <h4 class="price">current price: <span>{{$data->harga}}</span></h4>
+                        <p class="vote">{{$data->nutrition_facts}}</p>
                         <p><b>Quantity: </b><input type="number" min=1 value="1" name="quantity"></p>
                                                       <div class="action">
                             <input class="add-to-cart btn btn-default" type="submit" value="add to cart">

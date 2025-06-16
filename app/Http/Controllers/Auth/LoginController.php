@@ -34,7 +34,7 @@ class LoginController extends Controller
             return '/foods'; // Halaman backend
         } 
 
-        return '/home'; // Halaman front-end untuk user biasa
+        return '/'; // Halaman front-end untuk user biasa
     }
 
     /**

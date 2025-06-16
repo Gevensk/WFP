@@ -98,4 +98,17 @@ Route::post('/ajax/food/getEditForm',[FoodController::class,'getEditForm'])->nam
 Route::post('/ajax/category/getEditForm',[CategoryController::class,'getEditForm'])->name('category.getEditForm');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [FrontendController::class, 'home'])->name('home');
+
+// home page
+Route::get('/', [FrontEndController::class, "home"]);
+// see menu details
+Route::get('/detail/{food}', [FrontEndController::class, "detail"])->name('detailmenu');
+// view all pending reports and a form to submit them
+Route::get('/cart', [FrontEndController::class, "cart"]);
+// add or edit a report for a particular menu 
+Route::get('/goto-cart/{food}', [FrontEndController::class, "putCart"])->name("putCart");
+// remove a report for a particular menu
+Route::delete('/goto-cart/{food}', [FrontEndController::class, "deleteCart"]);
+// submit all pending reports
+Route::post('/submit', [FrontEndController::class, "checkout"])->name('checkout')->middleware('auth');

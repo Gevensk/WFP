@@ -29,7 +29,16 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/foods';
+    protected function redirectTo()
+    {
+        $user = Auth::user();
+
+        if ($user->role == 'Manager' || $user->role == 'Employee') {
+            return '/foods'; // Halaman backend
+        } 
+
+        return '/'; // Halaman front-end untuk user biasa
+    }
 
     /**
      * Create a new controller instance.
