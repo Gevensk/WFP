@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
+use Illuminate\Auth\Access\Response;
 
 class FrontEndPolicy
 {
@@ -12,5 +13,11 @@ class FrontEndPolicy
     public function __construct()
     {
         //
+    }
+
+    public function detail(User $user){
+        return ($user->role == "Customer") ?
+        Response::allow() :
+        Response::deny("Only users are allowed to perform this operation");
     }
 }
