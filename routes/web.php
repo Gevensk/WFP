@@ -78,8 +78,8 @@ Route::get('/admin/{cat}', function($cat){
     return "Portal Manajemen : ".$temp;
 });
 
-Route::resource('foods',FoodController::class);
-Route::resource('categories',CategoryController::class);
+Route::resource('foods',FoodController::class)->middleware('role:Manager,Employee');
+Route::resource('categories',CategoryController::class)->middleware('role:Manager,Employee');
 Route::resource('orders', OrderController::class);
 
 Route::get('/totalFoods', [CategoryController::class, "totalFoods"])->name('totalfood');
