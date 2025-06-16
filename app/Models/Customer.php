@@ -13,8 +13,8 @@ class Customer extends Model
     protected $primaryKey ='id';
     public $timestamps = true;
 
-    public function orders()
-    {
-        return $this->hasMany(Order::class, 'customers_id');
-    }
+    // public function orders()
+    // {
+    //     return $this->hasMany(Order::class, 'customers_id');
+    // }
 }

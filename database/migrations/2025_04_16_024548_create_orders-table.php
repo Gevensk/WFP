@@ -20,8 +20,8 @@ return new class extends Migration
             $table->enum('metode_payment', ['kredit', 'debit', 'qris']);
             $table->enum('status', ['proses', 'siap diambil', 'selesai']);
 
-            $table->unsignedBigInteger('customers_id');
-            $table->foreign('customers_id')->references('id')->on('customers');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 

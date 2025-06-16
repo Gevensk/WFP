@@ -10,19 +10,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Order extends Model
 {
     use HasFactory;
-    protected $table='orders';
-    protected $primarykey ='id';
+    protected $table = 'orders';
+    protected $primarykey = 'id';
     public $timestamps = true;
 
-    public function customer()
+    public function user()
     {
-        return $this->belongsTo(Customer::class, 'customers_id');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     public function foods()
     {
         return $this->belongsToMany(Food::class, 'keranjangs', 'order_id', 'food_id')
-                    ->withPivot('quantity');
+            ->withPivot('quantity');
     }
 
     public function keranjangs()

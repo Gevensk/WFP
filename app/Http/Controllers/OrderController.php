@@ -16,10 +16,10 @@ class OrderController extends Controller
     public function activeMember()
     {
         $report = DB::table('orders as o')
-            ->join('customers as c', 'c.id', '=', 'o.customers_id')
-            ->select("c.nama", DB::raw("count(o.id) as jumlah_pesan"))
+            ->join('users as u', 'u.id', '=', 'o.users_id')
+            ->select("u.name", DB::raw("count(o.id) as jumlah_pesan"))
             ->where("o.status", "=", "selesai")
-            ->groupBy("c.nama")
+            ->groupBy("u.name")
             ->orderBy("jumlah_pesan", "desc")
             ->get();
 
@@ -59,11 +59,11 @@ class OrderController extends Controller
     public function belumSelesai()
     {
         $data = DB::table('orders as o')
-            ->join('customers as c', 'o.customers_id', '=', 'c.id')
+            ->join('users as u', 'u.users_id', '=', 'u.id')
             ->join('keranjangs as k', 'o.id', '=', 'k.order_id')
             ->join('foods as f', 'k.food_id', '=', 'f.id')
             ->where('o.status', '!=', 'selesai')
-            ->select('o.id as order_id', 'c.nama as customer', 'f.nama as food', 'k.quantity', 'o.status')
+            ->select('o.id as order_id', 'u.name as customer', 'f.nama as food', 'k.quantity', 'o.status')
             ->orderByDesc('o.id')
             ->get();
         return view("reports.belumselesai", compact('data'));
@@ -75,7 +75,7 @@ class OrderController extends Controller
         // $orders = Order::with(['customer', 'keranjangs.food'])->get();
         // return view('order.index', compact('orders'));
 
-        $orders = Order::with(['customer', 'foods'])
+        $orders = Order::with(['user', 'foods'])
             ->whereHas('keranjangs')
             ->get();
 
@@ -144,7 +144,7 @@ class OrderController extends Controller
         return response()->json(array(
             'status' => 'oke',
             'msg' => "<div class='alert alert-info'>
-                        Customer ter-aktif adalah <b>".$highest->nama."</b></div>"
+                        Customer ter-aktif adalah <b>" . $highest->nama . "</b></div>"
         ), 200);
     }
 
@@ -161,7 +161,7 @@ class OrderController extends Controller
         return response()->json(array(
             'status' => 'oke',
             'msg' => "<div class='alert alert-info'>
-                        Menu terlaris adalah <b>".$terlaris->nama."</b></div>"
-        ),200); 
+                        Menu terlaris adalah <b>" . $terlaris->nama . "</b></div>"
+        ), 200);
     }
 }
