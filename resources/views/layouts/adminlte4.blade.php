@@ -78,7 +78,7 @@
                 <i class="bi bi-list"></i>
               </a>
             </li>
-            <li class="nav-item d-none d-md-block"><a href={{ route("home") }} class="nav-link">Home</a></li>
+            <li class="nav-item d-none d-md-block"><a href="" class="nav-link">Home</a></li>
             <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
           </ul>
           <!--end::Start Navbar Links-->
@@ -220,42 +220,36 @@
             <li class="nav-item dropdown user-menu">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img
-                  src={{ asset("adminlte4/assets/img/user2-160x160.jpg") }}
+                  src="https://fisika.uad.ac.id/wp-content/uploads/blank-profile-picture-973460_1280.png"
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
                 <li class="user-header text-bg-primary">
                   <img
-                    src={{ asset("adminlte4/assets/img/user2-160x160.jpg") }}
+                    src="https://fisika.uad.ac.id/wp-content/uploads/blank-profile-picture-973460_1280.png"
                     class="rounded-circle shadow"
                     alt="User Image"
                   />
                   <p>
-                    Vilen Alycia Holly - Web Developer
-                    <small>Member since March. 2025</small>
+                    {{ Auth::user()->name }} - {{ Auth::user()->role }}
+                    <small>Member since {{ Auth::user()->created_at }}</small>
                   </p>
                 </li>
                 <!--end::User Image-->
                 <!--begin::Menu Body-->
-                <li class="user-body">
-                  <!--begin::Row-->
+                <li class="user-footer">
                   <div class="row">
-                    <div class="col-4 text-center"><a href="#">Followers</a></div>
-                    <div class="col-4 text-center"><a href="#">Sales</a></div>
-                    <div class="col-4 text-center"><a href="#">Friends</a></div>
+                    <form action="{{ route('logout') }}" method="post">
+                    @csrf<input type="submit" value="logout" class='btn btn-danger' />
+                    </form>
                   </div>
-                  <!--end::Row-->
                 </li>
                 <!--end::Menu Body-->
                 <!--begin::Menu Footer-->
-                <li class="user-footer">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
-                </li>
                 <!--end::Menu Footer-->
               </ul>
             </li>

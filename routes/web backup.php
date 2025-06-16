@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\OrderController;
@@ -21,7 +20,7 @@ use App\Http\Controllers\OrderController;
 //     return view('welcome');
 // });
 
-Route::view('/', 'home');
+Route::get('/', [FoodController::class, 'index']);
 
 Route::get ('/coba', function(){
     return 'Hai GUYS!';
@@ -96,6 +95,3 @@ Route::post("/order/showterlaris",[OrderController::class, 'showTerlaris'])->nam
 Route::post('/ajax/food/getEditForm',[FoodController::class,'getEditForm'])->name('food.getEditForm');
 
 Route::post('/ajax/category/getEditForm',[CategoryController::class,'getEditForm'])->name('category.getEditForm');
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
