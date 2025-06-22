@@ -86,7 +86,7 @@ Route::get('/totalFoods', [CategoryController::class, "totalFoods"])->name('tota
 Route::get('/activeCustomer',[OrderController::class,"activeMember"])->name('activecustomer');
 Route::get('/terlaris',[OrderController::class,"terlaris"])->name('terlaris');
 Route::get('/paymentreport',[OrderController::class,"payment"])->name('paymentreport');
-Route::get('/belumselesai',[OrderController::class,"belumSelesai"])->name('belumselesai');
+Route::get('/sudahselesai',[OrderController::class,"sudahSelesai"])->name('sudahselesai');
 
 Route::view('index2', 'index2') ->name("home");
 
@@ -105,10 +105,10 @@ Route::get('/', [FrontEndController::class, "home"]);
 // see menu details
 Route::get('/detail/{food}', [FrontEndController::class, "detail"])->name('detailmenu');
 // view all pending reports and a form to submit them
-Route::get('/cart', [FrontEndController::class, "cart"]);
+Route::get('/cart', [FrontEndController::class, "cart"])->name('cart');
 // add or edit a report for a particular menu 
-Route::get('/goto-cart/{food}', [FrontEndController::class, "putCart"])->name("putCart");
+Route::post('/goto-cart/{food}', [FrontEndController::class, "putCart"])->name("putCart");
 // remove a report for a particular menu
-Route::delete('/goto-cart/{food}', [FrontEndController::class, "deleteCart"]);
+Route::delete('/goto-cart/{food}', [FrontEndController::class, "deleteCart"])->name('deleteCart');
 // submit all pending reports
 Route::post('/submit', [FrontEndController::class, "checkout"])->name('checkout')->middleware('auth');

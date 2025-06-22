@@ -17,6 +17,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class,'users_id');
+    }
+
     protected $fillable = [
         'name',
         'email',

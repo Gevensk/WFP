@@ -20,7 +20,7 @@ Active User
     <tbody>
         @foreach ($report as $r)
             <tr>
-                <td>{{ $r->nama }}</td>
+                <td>{{ $r->name }}</td>
                 <td>{{ $r->jumlah_pesan }}</td>
             </tr>
         @endforeach

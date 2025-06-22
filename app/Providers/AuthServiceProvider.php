@@ -24,5 +24,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Gate::define('detail-permission','App\Policies\FrontEndPolicy@detail');
+        Gate::define('backend-permission','App\Policies\FrontEndPolicy@backend');
     }
 }

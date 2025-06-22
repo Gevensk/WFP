@@ -12,7 +12,7 @@
                             <!-- Product name-->
                             <h5 class="fw-bolder">{{$data->nama}}</h5>
                             <!-- Product price-->
-                            {{ $data->harga }}
+                            Rp {{ $data->harga }}
                         </div>
                     </div>
                     <!-- Product actions-->

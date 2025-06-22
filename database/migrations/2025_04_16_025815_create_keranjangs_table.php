@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreign('order_id')->references('id')->on('orders');
 
             $table->integer('quantity');
-            $table->string('note', 1000);
+            $table->string('note', 1000)->nullable();
         });
     }
 

@@ -20,7 +20,7 @@
   <li class="nav-item">
     <a href="{{ route('orders.index') }}" class="nav-link {{ request()->routeIs('orders.*') ? 'active' : '' }}">
       <i class="nav-icon bi {{ request()->routeIs('orders.*') ? 'bi-circle-fill' : 'bi-circle' }}"></i>
-      <p>Order</p>
+      <p>Order Diproses</p>
     </a>
   </li> 
 @endsection
@@ -51,9 +51,9 @@
   </a>
 </li>
 <li class="nav-item">
-  <a href="{{ route('belumselesai') }}" class="nav-link">
+  <a href="{{ route('sudahselesai') }}" class="nav-link">
     <i class="nav-icon bi"></i>
-    <p>Orderan Belum Selesai</p>
+    <p>Orderan Sudah Selesai</p>
   </a>
 </li>
 @endsection

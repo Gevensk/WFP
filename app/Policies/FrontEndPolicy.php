@@ -20,4 +20,10 @@ class FrontEndPolicy
         Response::allow() :
         Response::deny("Only users are allowed to perform this operation");
     }
+
+    public function backend(User $user){
+        return ($user->role != "Customer") ?
+        Response::allow() :
+        Response::deny("Only employees and managers are allowed to perform this operation");
+    }
 }

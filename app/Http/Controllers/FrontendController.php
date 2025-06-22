@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Food;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
 
 class FrontendController extends Controller
 {
@@ -45,7 +46,6 @@ class FrontendController extends Controller
         }
         // save the report array to session
         $request->session()->put("cart", $cart);
-        dd( $request->session()->get("cart")); //remove after this trial
         // redirect to submit page
         return redirect("/cart")->with("status", "Sukses menambah Menu yang dibeli");
     }
@@ -89,4 +89,28 @@ class FrontendController extends Controller
         return redirect("/cart")->with("status", "Sukses menghapus data");
     }
 
+    public function checkout(Request $request)
+    {
+        // Validasi input dinein & metode pembayaran
+    $request->validate([
+        'dinein' => 'required|in:0,1',
+        'payment_method' => 'required|in:tunai,debit,qris',
+    ]);
+
+    // Ambil keranjang dari session
+    $cart = $request->session()->get("cart");
+
+    // Kalau kosong, jangan lanjut
+    if (!$cart || count($cart) === 0) {
+        return redirect()->back()->with('status', 'Keranjang masih kosong.');
+    }
+
+    // Buat transaksi order via model
+    $order = Order::createMyTransaction($cart, $request);
+
+    // Bersihkan cart
+    $request->session()->forget("cart");
+
+    return redirect("/cart")->with("status", "Pesanan berhasil dilakukan!");
+    }
 }

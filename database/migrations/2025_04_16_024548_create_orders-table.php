@@ -17,11 +17,11 @@ return new class extends Migration
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             
             $table->tinyInteger('dinein');
-            $table->enum('metode_payment', ['kredit', 'debit', 'qris']);
-            $table->enum('status', ['proses', 'siap diambil', 'selesai']);
+            $table->enum('metode_payment', ['tunai', 'debit', 'qris']);
+            $table->enum('status', ['proses', 'selesai'])->default('proses');
 
-            $table->unsignedBigInteger('customers_id');
-            $table->foreign('customers_id')->references('id')->on('customers');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 

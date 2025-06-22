@@ -8,7 +8,7 @@ Total Menu
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <div class="container">
-  <h2>Orderan Belum Selesai</h2>       
+  <h2>Orderan Sudah Selesai</h2>       
   <table class="table table-bordered">
     <thead>
       <tr>

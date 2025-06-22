@@ -5,7 +5,6 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use App\Models\Customer;
 use App\Models\FoodIngredients;
 
 class DatabaseSeeder extends Seeder
@@ -24,12 +23,10 @@ class DatabaseSeeder extends Seeder
 
         // User::factory(10)->create();
 
-        Customer::factory(10)->create();
-
         $this->call([
             CategorySeeder::class, //kategori ditulis duluan karena merupakan foreign key dari foods
             FoodSeeder::class,
-            CustomerSeeder::class,
+            UserSeeder::class,
             OrderSeeder::class,
             KeranjangSeeder::class,
         ]);
