@@ -17,7 +17,7 @@ class FrontendController extends Controller
 
     public function detail(Request $request, Food $food)
     {
-        $this->authorize('detail-permission', Auth::user());
+        $this->authorize('customer-permission', Auth::user());
         $data = $food;
         return view("detail", compact("data"));
     }
@@ -51,6 +51,7 @@ class FrontendController extends Controller
     }
 
     public function cart(Request $request){
+        $this->authorize('customer-permission', Auth::user());
         // load report array
         $cart = $request->session()->get("cart");
         // create a new array if there are no reports yet
@@ -92,25 +93,39 @@ class FrontendController extends Controller
     public function checkout(Request $request)
     {
         // Validasi input dinein & metode pembayaran
-    $request->validate([
-        'dinein' => 'required|in:0,1',
-        'payment_method' => 'required|in:tunai,debit,qris',
-    ]);
+        $request->validate([
+            'dinein' => 'required|in:0,1',
+            'payment_method' => 'required|in:tunai,debit,qris',
+        ]);
 
-    // Ambil keranjang dari session
-    $cart = $request->session()->get("cart");
+        // Ambil keranjang dari session
+        $cart = $request->session()->get("cart");
 
-    // Kalau kosong, jangan lanjut
-    if (!$cart || count($cart) === 0) {
-        return redirect()->back()->with('status', 'Keranjang masih kosong.');
+        // Kalau kosong, jangan lanjut
+        if (!$cart || count($cart) === 0) {
+            return redirect()->back()->with('status', 'Keranjang masih kosong.');
+        }
+
+        // Buat transaksi order via model
+        $order = Order::createMyTransaction($cart, $request);
+
+        // Bersihkan cart
+        $request->session()->forget("cart");
+
+        return redirect("/cart")->with("status", "Pesanan berhasil dilakukan!");
     }
 
-    // Buat transaksi order via model
-    $order = Order::createMyTransaction($cart, $request);
+    public function history()
+    {
+        $this->authorize('customer-permission', Auth::user());
+        $orders = \App\Models\Order::with(['foods'])
+            ->where('users_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->groupBy(function ($item) {
+                return $item->created_at->format('d M Y');
+            });
 
-    // Bersihkan cart
-    $request->session()->forget("cart");
-
-    return redirect("/cart")->with("status", "Pesanan berhasil dilakukan!");
+        return view('history', compact('orders'));
     }
 }

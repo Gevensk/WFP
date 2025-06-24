@@ -121,8 +121,9 @@ Food
 
 <div class="container">
   <h2>Foods</h2>
+  @can('manager-permission', Auth::user())
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#btnFormModal">+ Add Food</button>
-
+  @endcan
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -132,7 +133,9 @@ Food
         <th>Harga</th>
         <th>Porsi</th>
         <th>Kategori</th>
+        @can('manager-permission', Auth::user())
         <th>Aksi</th>
+        @endcan
       </tr>
     </thead>
     <tbody>
@@ -182,6 +185,7 @@ Food
                 <td>{{ $f->harga }}</td>
                 <td>{{ $f->porsi }}</td>
                 <td>{{ $f->category->nama ?? 'Tidak ada kategori' }}</td>
+                @can('manager-permission', Auth::user())
                 <td>
                   <a href="#modalEdit" class="btn btn-warning" data-bs-toggle="modal" onclick="getEditForm({{ $f->id }})">Edit</a>
 
@@ -191,48 +195,7 @@ Food
                     <input type="submit" value="delete" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus {{ $f->id }} = {{ $f->nama }} ?');">
                   </form>
                 </td>
-                {{-- <td>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal-{{ $f->id }}">Pesan</button>
-                  @push("modals")
-                  <div class="modal fade" id="orderModal-{{ $f->id }}" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="orderModalLabel">{{$f->nama}}</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body d-flex gap-3">
-                          <div style="flex: 1;">
-                            <img class="img-responsive w-100" style="max-height:250px; object-fit:cover;" src="{{ asset('storage/food/'.$f->image) }}">
-                          </div>
-                        
-                          <div style="flex: 1; position: relative;">
-                            <h5>Jumlah</h5>
-                            
-                            <div class="d-flex align-items-center gap-2 mb-3">
-                              <button class="btn btn-outline-secondary btn-sm" onclick="">-</button>
-                              <span id="qty-{{ $f->id }}">1</span>
-                              <button class="btn btn-outline-secondary btn-sm" onclick="">+</button>
-                            </div>
-                        
-                            <h5>Catatan</h5>
-                            <textarea id="catatan" name="catatan" required></textarea>
-                        
-                            <button type="button" class="btn btn-primary" 
-                                    style="position: absolute; bottom: 0; right: 0;" 
-                                    data-bs-dismiss="modal">
-                              Add to Cart
-                            </button>
-                          </div>
-                        </div>                        
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  @endpush
-                </td> --}}
+                @endcan
             </tr>
         @endforeach
     </tbody>

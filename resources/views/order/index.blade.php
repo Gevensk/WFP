@@ -19,6 +19,7 @@
                     <th>Dining Location</th>
                     <th>Payment Method</th>
                     <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,6 +44,19 @@
                                 <td rowspan="{{ $rowspan }}">{{ $order->dinein ? 'Dine In' : 'Take Away' }}</td>
                                 <td rowspan="{{ $rowspan }}">{{ ucfirst($order->metode_payment) }}</td>
                                 <td rowspan="{{ $rowspan }}">{{ ucfirst($order->status) }}</td>
+                                <td rowspan="{{ $rowspan }}">
+                                    @if ($order->status == 'proses')
+                                        <form action="{{ route('orders.update', $order->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="selesai">
+                                            <button type="submit" class="btn btn-warning btn-sm"
+                                                onclick="return confirm('Tandai pesanan ini sebagai selesai?')">Selesai</button>
+                                        </form>
+                                    @else
+                                        <span class="text-success">Selesai</span>
+                                    @endif
+                                </td>
                             @endif
                         </tr>
                     @endforeach

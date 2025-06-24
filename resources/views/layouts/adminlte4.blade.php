@@ -79,7 +79,6 @@
               </a>
             </li>
             <li class="nav-item d-none d-md-block"><a href="/" class="nav-link">Home</a></li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
           </ul>
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
@@ -301,6 +300,7 @@
                 <ul class="nav nav-treeview">
                   @yield('side-bar')
                 </ul>
+              @can('manager-permission', Auth::user())
               <li class="nav-item menu-open">
                 <a href="#" class="nav-link active">
                   <i class="nav-icon bi bi-speedometer"></i>
@@ -312,6 +312,7 @@
                 <ul class="nav nav-treeview">
                   @yield('side-bar-report')
                 </ul>
+              @endcan
             </ul>
             <!--end::Sidebar Menu-->
           </nav>

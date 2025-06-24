@@ -11,12 +11,6 @@
       <p>Category</p>
     </a>
   </li>
-  {{-- <li class="nav-item">
-    <a href="#" class="nav-link {{ request()->routeIs('customers.*') ? 'active' : '' }}">
-      <i class="nav-icon bi {{ request()->routeIs('customers.*') ? 'bi-circle-fill' : 'bi-circle' }}"></i>
-      <p>Customer</p>
-    </a>
-  </li> --}}
   <li class="nav-item">
     <a href="{{ route('orders.index') }}" class="nav-link {{ request()->routeIs('orders.*') ? 'active' : '' }}">
       <i class="nav-icon bi {{ request()->routeIs('orders.*') ? 'bi-circle-fill' : 'bi-circle' }}"></i>

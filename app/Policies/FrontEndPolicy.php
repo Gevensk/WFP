@@ -15,7 +15,7 @@ class FrontEndPolicy
         //
     }
 
-    public function detail(User $user){
+    public function customer(User $user){
         return ($user->role == "Customer") ?
         Response::allow() :
         Response::deny("Only users are allowed to perform this operation");
@@ -25,5 +25,11 @@ class FrontEndPolicy
         return ($user->role != "Customer") ?
         Response::allow() :
         Response::deny("Only employees and managers are allowed to perform this operation");
+    }
+
+    public function manager(User $user){
+        return ($user->role != "Customer" && $user->role != "Employee") ?
+        Response::allow() :
+        Response::deny("Only managers are allowed to perform this operation");
     }
 }

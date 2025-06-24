@@ -23,7 +23,8 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
-        Gate::define('detail-permission','App\Policies\FrontEndPolicy@detail');
+        Gate::define('customer-permission','App\Policies\FrontEndPolicy@customer');
         Gate::define('backend-permission','App\Policies\FrontEndPolicy@backend');
+        Gate::define('manager-permission','App\Policies\FrontEndPolicy@manager');
     }
 }

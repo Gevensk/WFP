@@ -17,84 +17,22 @@ use App\Http\Controllers\OrderController;
 |
 */
 
-// Route::get('/', function () {n
-//     return view('welcome');
-// });
-
 Route::view('/', 'home');
-
-Route::get ('/coba', function(){
-    return 'Hai GUYS!';
-});
-
-Route::get('user/{id}', function($id){ //parameter tidak boleh null
-    return 'User ID'.$id;
-});
-
-Route::get('username/{name?}', function($name="John Doe"){
-    return "My name is ".$name;
-})->name('profile');
-
-//cara pemanggilan : $url = route('routename', ['param1' => value1, 'param2' => value2])
-
-Route::get("/nameRoute", function(){
-    $url = route("profile", ["name => Vilen"]);
-    return $url;
-});
-
-// Route::get('/', function(){
-//     return view('welcome', ['name' => 'Vilen Alycia Holly', 
-//                                         'nrp' => '160422173', 
-//                                         'alamat' => 'Jl. Rungkut Mejoyo Utara V blok AF no 15-16']);
-// });
-
-
-//TUGAS
-
-Route::get('/welcome', function(){
-    return "Selamat Datang";
-});
-
-Route::get('/before_order', function(){
-    return "Pilih Dine-In atau Takeaway";
-});
-
-Route::get('/menu/{opsi?}', function($opsi="Dine-in"){
-    return "Daftar menu ".$opsi;
-});
-
-Route::get('/admin/{cat}', function($cat){
-    $temp = "";
-    if($cat == "categories"){
-        $temp = "Daftar Kategori";
-    }
-    else if($cat == "order"){
-        $temp = "Daftar Order";
-    }
-    else{
-        $temp = "Daftar Member";
-    }
-
-    return "Portal Manajemen : ".$temp;
-});
 
 Route::resource('foods',FoodController::class)->middleware('role:Manager,Employee');
 Route::resource('categories',CategoryController::class)->middleware('role:Manager,Employee');
-Route::resource('orders', OrderController::class);
+Route::resource('orders', OrderController::class)->middleware('role:Manager,Employee');
 
-Route::get('/totalFoods', [CategoryController::class, "totalFoods"])->name('totalfood');
-Route::get('/activeCustomer',[OrderController::class,"activeMember"])->name('activecustomer');
-Route::get('/terlaris',[OrderController::class,"terlaris"])->name('terlaris');
-Route::get('/paymentreport',[OrderController::class,"payment"])->name('paymentreport');
-Route::get('/sudahselesai',[OrderController::class,"sudahSelesai"])->name('sudahselesai');
-
-Route::view('index2', 'index2') ->name("home");
+Route::get('/totalFoods', [CategoryController::class, "totalFoods"])->name('totalfood')->middleware('role:Manager');
+Route::get('/activeCustomer',[OrderController::class,"activeMember"])->name('activecustomer')->middleware('role:Manager');
+Route::get('/terlaris',[OrderController::class,"terlaris"])->name('terlaris')->middleware('role:Manager');
+Route::get('/paymentreport',[OrderController::class,"payment"])->name('paymentreport')->middleware('role:Manager');
+Route::get('/sudahselesai',[OrderController::class,"sudahSelesai"])->name('sudahselesai')->middleware('role:Manager');
 
 Route::post("/order/showactiveuser",[OrderController::class, 'showActiveUser'])->name("order.showactiveuser");
 Route::post("/order/showterlaris",[OrderController::class, 'showTerlaris'])->name("order.showterlaris");
 
 Route::post('/ajax/food/getEditForm',[FoodController::class,'getEditForm'])->name('food.getEditForm');
-
 Route::post('/ajax/category/getEditForm',[CategoryController::class,'getEditForm'])->name('category.getEditForm');
 Auth::routes();
 
@@ -112,3 +50,5 @@ Route::post('/goto-cart/{food}', [FrontEndController::class, "putCart"])->name("
 Route::delete('/goto-cart/{food}', [FrontEndController::class, "deleteCart"])->name('deleteCart');
 // submit all pending reports
 Route::post('/submit', [FrontEndController::class, "checkout"])->name('checkout')->middleware('auth');
+// order history page
+Route::get('/history',[FrontendController::class, "history"])->name('history');

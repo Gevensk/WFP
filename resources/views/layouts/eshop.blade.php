@@ -26,6 +26,9 @@
                         @can('backend-permission', Auth::user())
                             <li class="nav-item"><a class="nav-link active" aria-current="page" href="/foods">Backend</a></li>
                         @endcan
+                        @can('customer-permission', Auth::user())
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/history">Daftar Pesanan</a></li>
+                        @endcan
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">

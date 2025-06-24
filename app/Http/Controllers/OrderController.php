@@ -58,23 +58,15 @@ class OrderController extends Controller
 
     public function sudahSelesai()
     {
-        $data = DB::table('orders as o')
-            ->join('users as u', 'u.id', '=', 'u.id')
-            ->join('keranjangs as k', 'o.id', '=', 'k.order_id')
-            ->join('foods as f', 'k.food_id', '=', 'f.id')
-            ->where('o.status', '=', 'selesai')
-            ->select('o.id as order_id', 'u.name as customer', 'f.nama as food', 'k.quantity', 'o.status')
-            ->orderByDesc('o.id')
+        $orders = Order::with(['user', 'foods'])
+            ->where('status', 'selesai')
             ->get();
-        return view("reports.sudahselesai", compact('data'));
+
+        return view("reports.sudahselesai", ["orders" => $orders]);
     }
 
     public function index()
     {
-        //left join ambil yg null (No Item)
-        // $orders = Order::with(['customer', 'keranjangs.food'])->get();
-        // return view('order.index', compact('orders'));
-
         $orders = Order::with(['user', 'foods'])
             ->where('status', 'proses')
             ->get();
@@ -118,9 +110,17 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Order $order)
     {
-        //
+        if ($request->has('status')) {
+            $order->status = $request->status;
+            $order->save();
+
+            return redirect()->route('orders.index')->with('status', 'Status pesanan diperbarui.');
+        }
+
+        // tambahkan logic lain jika ada update field lain
+        return redirect()->route('orders.index')->with('status', 'Tidak ada perubahan.');
     }
 
     /**

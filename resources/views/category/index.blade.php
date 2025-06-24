@@ -83,7 +83,9 @@
 
   <div class="container">
     <h2>Categories</h2>
+    @can('manager-permission', Auth::user())
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#btnFormModal">+ Add Category</button>
+    @endcan
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -91,7 +93,9 @@
         <th>Image</th>
         <th>Name</th>
         <th>List of Foods Name</th>
+        @can('manager-permission', Auth::user())
         <th colspan="2">Aksi</th>
+        @endcan
         </tr>
       </thead>
       <tbody>
@@ -151,6 +155,7 @@
                 </div>
               @endpush
             </td>
+            @can('manager-permission', Auth::user())
             <td>
               <a href="#modalEdit" class="btn btn-warning" data-bs-toggle="modal" onclick="getEditForm({{ $c->id }})">Edit</a>
             </td>
@@ -160,7 +165,8 @@
               @method("DELETE")
                 <input type="submit" value="delete" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus {{ $c->id }} = {{ $c->nama }} ?');">
                   </form>
-              </td>
+            </td>
+            @endcan
           </tr>
         @endforeach
       </tbody>
