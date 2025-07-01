@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('nama', 100);
             $table->string('deskripsi', 1000);
-            $table->float('harga');
+            $table->float('harga', 100, 2);
             $table->enum('porsi', ['kecil', 'sedang', 'besar']);
 
             $table->unsignedBigInteger('category_id');
