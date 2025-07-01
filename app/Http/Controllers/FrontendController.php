@@ -17,7 +17,6 @@ class FrontendController extends Controller
 
     public function detail(Request $request, Food $food)
     {
-        $this->authorize('customer-permission', Auth::user());
         $data = $food;
         return view("detail", compact("data"));
     }
@@ -118,7 +117,7 @@ class FrontendController extends Controller
     public function history()
     {
         $this->authorize('customer-permission', Auth::user());
-        $orders = \App\Models\Order::with(['foods'])
+        $orders = Order::with(['foods'])
             ->where('users_id', Auth::id())
             ->orderBy('created_at', 'desc')
             ->get()

@@ -14,11 +14,6 @@ class FoodController extends Controller
      */
     public function index()
     {
-        // //RAW
-        // $foods = DB::select("select * from foods");
-        // print_r($foods);exit;
-
-        //Query Builder
         $foods = Food::with('category')->get();
         $category = Category::all();
 

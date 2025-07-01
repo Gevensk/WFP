@@ -37,13 +37,15 @@
                             </div>
                         </div>
                         <h4 class="price">Current price: <span id="current-price">{{ $data->harga }}</span></h4>
-                        <p>
-                            <b>Quantity: </b>
-                            <input type="number" min="1" value="1" name="quantity" id="quantity-input" data-harga="{{ $data->harga }}">
-                        </p>
-                        <div class="action">
-                            <input class="add-to-cart btn btn-default" type="submit" value="add to cart">
-                        </div>
+                        @can('customer-permission', Auth::user())
+                            <p>
+                                <b>Quantity: </b>
+                                <input type="number" min="1" value="1" name="quantity" id="quantity-input" data-harga="{{ $data->harga }}">
+                            </p>
+                            <div class="action">
+                                <input class="add-to-cart btn btn-default" type="submit" value="add to cart">
+                            </div>
+                        @endcan
                         </form>
                     </div>
 				</div>

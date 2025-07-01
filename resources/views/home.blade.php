@@ -16,11 +16,9 @@
                         </div>
                     </div>
                     <!-- Product actions-->
-                    @can('customer-permission', Auth::user())
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('detailmenu',$data->id)}}">Detail</a></div>
                     </div>
-                    @endcan
                 </div>
             </div>
         @endforeach
