@@ -19,6 +19,7 @@ return new class extends Migration
             $table->tinyInteger('dinein');
             $table->enum('metode_payment', ['tunai', 'debit', 'qris']);
             $table->enum('status', ['proses', 'selesai'])->default('proses');
+            $table->float('total_order', 1000000000, 2);
 
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users');
