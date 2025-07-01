@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         $manager = User::create([
             'name' => 'Manager User',
             'email' => 'manager@example.com',
-            'password' => '$2y$10$.4K19YGu0ewP64k1T0LMiO1sHnCI6ToVJxEZVfSpcrTANwi0iA17C',
+            'password' => '$2a$10$Aj3T78IfkHprzanIkGMGWebC9.4B49QtV7GiT30NEkQZOL8aPGc/a',
             'role' => 'Manager'
         ]);
 
@@ -24,14 +24,14 @@ class UserSeeder extends Seeder
         $employee1 = User::create([
             'name' => 'Employee User 1',
             'email' => 'employee1@example.com',
-            'password' => '$2y$10$.4K19YGu0ewP64k1T0LMiO1sHnCI6ToVJxEZVfSpcrTANwi0iA17C',
+            'password' => '$2a$10$Aj3T78IfkHprzanIkGMGWebC9.4B49QtV7GiT30NEkQZOL8aPGc/a',
             'role' => 'Employee'
         ]);
 
         $employee2 = User::create([
             'name' => 'Employee User 2',
             'email' => 'employee2@example.com',
-            'password' => '$2y$10$.4K19YGu0ewP64k1T0LMiO1sHnCI6ToVJxEZVfSpcrTANwi0iA17C',
+            'password' => '$2a$10$Aj3T78IfkHprzanIkGMGWebC9.4B49QtV7GiT30NEkQZOL8aPGc/a',
             'role' => 'Employee'
         ]);
 
@@ -39,35 +39,35 @@ class UserSeeder extends Seeder
         $customer1 = User::create([
             'name' => 'Customer User 1',
             'email' => 'customer1@example.com',
-            'password' => '$2y$10$.4K19YGu0ewP64k1T0LMiO1sHnCI6ToVJxEZVfSpcrTANwi0iA17C',
+            'password' => '$2a$10$Aj3T78IfkHprzanIkGMGWebC9.4B49QtV7GiT30NEkQZOL8aPGc/a',
             'role' => 'Customer'
         ]);
 
         $customer2 = User::create([
             'name' => 'Customer User 2',
             'email' => 'customer2@example.com',
-            'password' => '$2y$10$.4K19YGu0ewP64k1T0LMiO1sHnCI6ToVJxEZVfSpcrTANwi0iA17C',
+            'password' => '$2a$10$Aj3T78IfkHprzanIkGMGWebC9.4B49QtV7GiT30NEkQZOL8aPGc/a',
             'role' => 'Customer'
         ]);
 
         $customer3 = User::create([
             'name' => 'Customer User 3',
             'email' => 'customer3@example.com',
-            'password' => '$2y$10$.4K19YGu0ewP64k1T0LMiO1sHnCI6ToVJxEZVfSpcrTANwi0iA17C',
+            'password' => '$2a$10$Aj3T78IfkHprzanIkGMGWebC9.4B49QtV7GiT30NEkQZOL8aPGc/a',
             'role' => 'Customer'
         ]);
 
         $customer4 = User::create([
             'name' => 'Customer User 4',
             'email' => 'customer4@example.com',
-            'password' => '$2y$10$.4K19YGu0ewP64k1T0LMiO1sHnCI6ToVJxEZVfSpcrTANwi0iA17C',
+            'password' => '$2a$10$Aj3T78IfkHprzanIkGMGWebC9.4B49QtV7GiT30NEkQZOL8aPGc/a',
             'role' => 'Customer'
         ]);
 
         $customer5 = User::create([
             'name' => 'Customer User 5',
             'email' => 'customer5@example.com',
-            'password' => '$2y$10$.4K19YGu0ewP64k1T0LMiO1sHnCI6ToVJxEZVfSpcrTANwi0iA17C',
+            'password' => '$2a$10$Aj3T78IfkHprzanIkGMGWebC9.4B49QtV7GiT30NEkQZOL8aPGc/a',
             'role' => 'Customer'
         ]);
     }
