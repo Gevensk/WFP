@@ -14,7 +14,7 @@
   <li class="nav-item">
     <a href="{{ route('orders.index') }}" class="nav-link {{ request()->routeIs('orders.*') ? 'active' : '' }}">
       <i class="nav-icon bi {{ request()->routeIs('orders.*') ? 'bi-circle-fill' : 'bi-circle' }}"></i>
-      <p>Order Diproses</p>
+      <p>Daftar Pesanan</p>
     </a>
   </li> 
 @endsection

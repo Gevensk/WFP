@@ -36,7 +36,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <h4 class="price">Current price: <span id="current-price">{{ $data->harga }}</span></h4>
+                        <h4 class="price">Current price: <span id="current-price">Rp {{ number_format($data->harga, 0, ',', '.') }}</span></h4>
                         @can('customer-permission', Auth::user())
                             <p>
                                 <b>Quantity: </b>
