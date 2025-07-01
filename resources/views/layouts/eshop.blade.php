@@ -13,10 +13,11 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{asset('styles.css')}}" rel="stylesheet" />
         <link href="{{asset('detail.css')}}" rel="stylesheet" />
+        @vite('resources/css/app.css')
     </head>
-    <body>
+    <body class="{{ session('theme', 'light') }}">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg {{ session('theme', 'light') === 'dark' ? 'navbar-dark bg-dark' : 'navbar-light bg-light' }}">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="#!">Natura Bites</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -61,6 +62,12 @@
                             </li>
                         @endguest
                     </ul>
+                        <form method="POST" action="{{ route('theme.toggle') }}" class="d-flex me-3">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            {{ session('theme', 'light') === 'dark' ? 'Light' : 'Dark' }} Mode
+                        </button>
+                    </form>
                     @php
                         $cart = session('cart', []);
                     @endphp
@@ -78,7 +85,7 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="theme-header py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">Discover Your Favorite Healthy Foods!</h1>
@@ -88,7 +95,7 @@
         </header>
         <!-- Section-->
         <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
+            <div class="container px-4 px-lg-5 mt-5 stay-light">
                 @yield('content')
             </div>
         </section>

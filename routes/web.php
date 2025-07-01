@@ -52,3 +52,9 @@ Route::delete('/goto-cart/{food}', [FrontEndController::class, "deleteCart"])->n
 Route::post('/submit', [FrontEndController::class, "checkout"])->name('checkout')->middleware('auth');
 // order history page
 Route::get('/history',[FrontendController::class, "history"])->name('history');
+
+Route::post('/theme-toggle', function () {
+    $theme = session('theme', 'light') === 'dark' ? 'light' : 'dark';
+    session(['theme' => $theme]);
+    return back();
+})->name('theme.toggle');
