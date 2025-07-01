@@ -45,30 +45,9 @@
                 </form>
               </td>
             </tr>
-            @php
-              $subtotal = $r['food']->harga * $r['quantity'];
-              $total += $subtotal;
-            @endphp
-            <tr>
-              <td><img width="170px" height="170px" src="{{ $r['food']->image }}" alt="Photo of Food #{{ $r['food']->id }}" /></td>
-              <td>{{ $r['food']->nama }}</td>
-              <td>{{ $r['quantity'] }}</td>
-              <td>Rp {{ number_format($r['food']->harga, 0, ',', '.') }}</td>
-              <td>Rp {{ number_format($subtotal, 0, ',', '.') }}</td> {{-- ✅ Subtotal --}}
-              <td><input type="text" class="form-control note-input" placeholder="Catatan untuk pesanan anda..."></td>
-              <td>
-                <a class="btn btn-warning" href="{{ url('/detail/' . $r['id']) }}">Lihat</a>
-                <form action="{{ route('deleteCart', $r['id']) }}" method="POST" style="display:inline;">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-danger">Batalkan</button>
-                </form>
-              </td>
-            </tr>
-          @endforeach
+            @endforeach
         </tbody>
       </table>
-
       <div class="d-flex justify-content-end mb-4">
           <h5><strong>Total Harga: Rp {{ number_format($total, 0, ',', '.') }}</strong></h5>
       </div>
@@ -108,11 +87,6 @@
             </div>
           </div>
         </div>
-
-        <div class="text-right">
-          <input type="submit" value="Checkout" class="btn btn-success">
-        </div>
-      </form>
         <div class="text-right">
           <input type="submit" value="Checkout" class="btn btn-success">
         </div>
