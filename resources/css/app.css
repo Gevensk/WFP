@@ -1,0 +1,76 @@
+body.light {
+    background-color: white;
+    color: black;
+}
+
+body.light .navbar {
+    background-color: #f8f9fa;
+    color: black;
+}
+
+body.dark {
+    background-color: #121212 !important;
+    color: #f1f1f1 !important;
+}
+
+body.dark a {
+    color: #9de6a2;
+}
+
+body.dark .navbar {
+    background-color: black !important;
+    color: white !important;
+}
+
+body.dark .container,
+body.dark .card,
+body.dark .table,
+body.dark .bg-light,
+body.dark .navbar-light {
+    background-color: transparent !important;
+    color: inherit;
+}
+
+body {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark .card {
+    background-color: rgb(170, 168, 168) !important;
+    color: black !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+body.dark .card .card-title,
+body.dark .card .card-text {
+    color: black !important;
+}
+
+/* Default (light mode) */
+.theme-header {
+    background-color: #055421; /* Warna terang */
+    color: black;
+}
+
+/* Dark mode override */
+body.dark .theme-header {
+    background-color: #1e1e1e; /* Warna gelap */
+    color: white;
+}
+
+body.dark .theme-header .text-white,
+body.dark .theme-header .text-white-50 {
+    color: white !important;
+}
+
+body.light .green-light-btn {
+    background-color: #055421; /* Bootstrap green */
+    color: white;
+    border: none;
+}
+
+body.dark .green-light-btn {
+    background-color: black; /* Bootstrap green */
+    color: white;
+    border: none;
+}

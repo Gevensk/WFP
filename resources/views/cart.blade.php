@@ -86,9 +86,9 @@
               <label class="form-check-label" for="qris">QRIS</label>
             </div>
           </div>
-        </div>
-        <div class="text-right">
-          <input type="submit" value="Checkout" class="btn btn-success">
+          <div class="text-right">
+            <input type="submit" value="Checkout" class="btn btn-success">
+          </div>
         </div>
       </form>
   @else
